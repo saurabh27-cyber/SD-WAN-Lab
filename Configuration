@@ -1,4 +1,17 @@
-## 1.How to system configuration  
+## Install certificate service
+ 
+##  Configure VManage 
+For vmanage we need to configure system configuration and vpn configuration.
+Vpn 0 >>> Transport/ISP side
+Vpn 512 >>> Management side
+Vpn 1-511 >>> service side
+Vmanage- Management plane
+Vsmart- Control plane
+Vbond - Security Plane
+Vedge - Data plane
+
+## 1.How to system configuration
+
 vmanage#configure
 vmanage(config)#system
 vmanage(config-system)#host-name vmanage_1
