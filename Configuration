@@ -1,0 +1,137 @@
+## 1.How to system configuration  
+vmanage#configure
+vmanage(config)#system
+vmanage(config-system)#host-name vmanage_1
+vmanage(config-system)#clock timezone Asia/kolkata
+vmanage(config-system)#site-id 100
+vmanage(config-system)#system-ip 1.1.1.1
+vmanage(config-system)#organization-name "viptela sdwan"
+vmanage(config-system)#vbond 200.100.50.3
+vmanage(config-system)#commit
+vmanage_1(config-system)#exit
+vmanage_1(config)#vpn 0
+vmanage_1(config-vpn-0)#intrface eth0
+vmanage_1(config-interface-eth0)#ip address 200.100.50.1/24
+vmanage_1(config-interface-eth0)#no shutdown
+vmanage_1(config-interface-eth0)#commit
+vmanage_1(config-tunnel-interface)#tunnel-interface
+vmanage_1(config-tunnel-interface)#allow-service sshd
+vmanage_1(config-tunnel-interface)#allow-service netconf
+vmanage_1(config-tunnel-interface)#allow service all
+vmanage_1(config-tunnel-interface)#commit
+vmanage_1(config-tunnel-interface)#exit
+vmanage_1(config-vpn-0)#exit
+vmanage_1(config)#vpn 512
+vmanage_1(config-vpn-512)#interface eth1
+vmanage_1(config-interface-eth1)#ip address 192.168.10.1/24
+vmanage_1(config-interface-eth1)#no shutdown
+vmanage_1(config-interface-eth1)#commit
+vmanage_1(config-interface-eth1)#exit
+vmanage_1(config-vpn-512)#exit
+vmanage_1(config)#vpn 0
+vmanage_1(config-vpn-0)#ip route 0.0.0.0/0 200.100.50.100
+vmanage_1(config-vpn-0)#commit
+
+## Vsmart Configration
+vsmart_1#configure
+vsmart_1(config)#system
+vsmart_1(config-system)#host-name vsmart_1
+vsmart_1(config-system)#clock timezone Asia/kolkata
+vsmart_1(config-system)#site-id 100
+vsmart_1(config-system)#system-ip 2.2.2.2
+vsmart_1(config-system)#organization-name "viptela sdwan"
+vsmart_1(config-system)#vbond 200.100.50.3
+vsmart_1(config-system)#commit
+vsmart_1(config-system)#exit
+vsmart_1(config)#vpn 0
+vsmart_1(config-vpn-0)#intrface eth0
+vsmart_1(config-interface-eth0)#ip address 200.100.50.2/24
+vsmart_1(config-interface-eth0)#no shutdown
+vsmart_1(config-interface-eth0)#commit
+vsmart_1(config-tunnel-interface)#tunnel-interface
+vsmart_1(config-tunnel-interface)#allow-service sshd
+vsmart_1(config-tunnel-interface)#allow-service netconf
+vsmart_1(config-tunnel-interface)#allow service all
+vsmart_1(config-tunnel-interface)#commit
+vsmart_1(config-tunnel-interface)#exit
+vsmart_1(config-vpn-0)#exit
+vsmart_1(config)#vpn 512
+vsmart_1(config-vpn-512)#interface eth1
+vsmart_1(config-interface-eth1)#ip address 192.168.10.2/24
+vsmart_1(config-interface-eth1)#no shutdown
+vsmart_1(config-interface-eth1)#commit
+vsmart_1(config-interface-eth1)#exit
+vsmart_1(config-vpn-512)#exit
+vsmart_1(config)#vpn 0
+vsmart_1(config-vpn-0)#ip route 0.0.0.0/0 200.100.50.100
+vsmart_1(config-vpn-0)#commit
+
+
+## Vbond configuration
+vbond_1#configure
+vbond_1(config)#system
+vbond_1(config-system)#host-name vbond_1
+vbond_1(config-system)#clock timezone Asia/kolkata
+vbond_1(config-system)#site-id 100
+vbond_1(config-system)#system-ip 3.3.3.3
+vbond_1(config-system)#organization-name "viptela sdwan"
+vbond_1(config-system)#vbond 200.100.50.3 local
+vbond_1(config-system)#commit
+vbond_1(config-system)#exit
+vbond_1(config)#vpn 0
+vbond_1(config-vpn-0)#intrface ge0/0
+vbond_1(config-interface-eth0)#ip address 200.100.50.3/24
+vbond_1(config-interface-eth0)#no shutdown
+vbond_1(config-interface-eth0)#commit
+vbond_1(config-tunnel-interface)#tunnel-interface
+vbond_1(config-tunnel-interface)#allow-service sshd
+vbond_1(config-tunnel-interface)#allow-service netconf
+vbond_1(config-tunnel-interface)#allow service all
+vbond_1(config-tunnel-interface)#commit
+vbond_1(config-tunnel-interface)#exit
+vbond_1(config-vpn-0)#exit
+vbond_1(config)#vpn 512
+vbond_1(config-vpn-512)#interface eth0
+vbond_1(config-interface-eth1)#ip address 192.168.10.3/24
+vbond_1(config-interface-eth1)#no shutdown
+vbond_1(config-interface-eth1)#commit
+vbond_1(config-interface-eth1)#exit
+vbond_1(config-vpn-512)#exit
+vbond_1(config)#vpn 0
+vbond_1(config-vpn-0)#ip route 0.0.0.0/0 200.100.50.100
+vbond_1(config-vpn-0)#commit
+
+
+## ISP router configuration
+ISP(config)#interface gi 0/0
+ISP(config-if)#ip address 200.100.50.100 255.255.255.0
+ISP(config-if)#no shutdown
+ISP(config-if)#exit
+ISP(config)#interface gi 0/2
+ISP(config-if)#ip address 200.100.51.2 255.255.255.0
+ISP(config-if)#no shutdown
+ISP(config-if)#exit
+ISP(config)#router ospf 1
+ISP(config-router)#network 0.0.0.0 255.255.255.255 area 0
+##Vedge Configuration
+vedge_1#configure
+vedge_1(config)#system
+vedge_1(config-system)#host-name vedge_1
+vedge_1(config-system)#clock timezone Asia/kolkata
+vedge_1(config-system)#site-id 200
+vedge_1(config-system)#system-ip 4.4.4.4
+vedge_1(config-system)#organization-name "viptela sdwan"
+vedge_1(config-system)#vbond 200.100.50.3 
+vedge_1(config-system)#commit
+vedge_1(config-system)#exit
+vedge_1(config)#vpn 0
+vedge_1(config-vpn-0)#intrface ge0/0
+vedge_1(config-interface-eth0)#ip address 200.100.51.1/24
+vedge_1(config-interface-eth0)#no shutdown
+vedge_1(config-interface-eth0)#commit
+vedge_1(config-tunnel-interface)#tunnel-interface
+vedge_1(config-tunnel-interface)#allow-service sshd
+vedge_1(config-tunnel-interface)#allow-service netconf
+vedge_1(config-tunnel-interface)#allow service all
+vedge_1(config-tunnel-interface)#ip route 0.0.0.0/0 200.100.51.2
+vedge_1(config-tunnel-interface)#commit
